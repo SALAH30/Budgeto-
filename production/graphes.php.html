@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+  <link rel="apple-touch-icon" sizes="57x57" href="../accueil/img/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="../accueil/img/favicons/apple-touch-icon-60x60.png">
+  <link rel="icon" type="image/png" href="../accueil/img/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="../accueil/img/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="../accueil/img/favicons/manifest.json">
+  <link rel="shortcut icon" href="../accueil/img/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#00a8ff">
+  <meta name="msapplication-config" content="../accueil/img/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+    <title>Budgito | Statistique </title>
+
+    <!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="css/custom.css" rel="stylesheet">
+  </head>
+
+  <body class="nav-md">
+       <?php
+include('php/sidebare_col.php');
+  
+       $db = new PDO("mysql:host=localhost;dbname=budgeto;charset=utf8", "root", "");
+
+       $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$colloque = $_SESSION['idCol'];
+include('php/cout.php');
+
+
+
+
+?>
+
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>
+                      Colloque 
+                      <small>
+                          nom colloque !!
+                      </small>
+                  </h3>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+			
+
+      <div class="animated flipInY col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="tile-stats">
+                  <div class="icon"><i class="fa fa-calculator"></i>
+                  </div>
+                  <div class="count"><?php echo $Budget;?> DA</div>
+                  <h3>Budget prévu</h3>
+                </div>
+              </div>
+			  <div class="animated flipInY col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="tile-stats">
+                  <div class="icon"><i class="fa fa-money"></i>
+                  </div>
+                  <div class="count"><?php echo $Budget;?> DA</div>
+
+                  <h3>Budget réel</h3>
+                </div>
+              </div>
+			  
+			 <div class="clearfix"></div>
+			<div>
+			 
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Répartion du bugdet par ressources <small>prévu/réel</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <canvas id="mybarChart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+              <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Répartion du budget par ressources <small>Prévu</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <canvas id="canvasDoughnut"></canvas>
+                  </div>
+                </div>
+              </div>
+			  
+			   <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Répartion du budget par ressources <small>Réel</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <canvas id="canvasDoughnut_2"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+				
+			
+			
+
+			</div>
+
+
+          </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+          <p>&copy; 2016 All Rights Reserved. Powered by TeamTT@ESI</p>
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../vendors/nprogress/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="../vendors/Chart.js/dist/Chart.min.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="js/custom.js"></script>
+
+
+       
+
+    <!-- Chart.js -->
+    <script>
+      Chart.defaults.global.legend = {
+        enabled: false
+      };
+
+      // Bar chart
+      var ctx = document.getElementById("mybarChart");
+      var mybarChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ["Salles", "Equipements", "Intervenants", "Goodies", "Réstauration" , "Personnel" , "Publicité" , "Ressources" ],
+          datasets: [{
+            label: '# prévu',
+            backgroundColor: "#26B99A",
+            data: [<?php echo $coutsalle; ?>, <?php echo $coutequiper; ?>, <?php echo $ren_intervenant+$couttrens+$coutheb; ?>, <?php echo $coutGoo; ?>, <?php echo $coutrepas; ?>,<?php echo $ren_personnel; ?>,<?php echo $cout_pub; ?>,<?php echo $coutR; ?>]
+          }, {
+            label: '# réel',
+            backgroundColor: "#03586A",
+            data: [41, 56, 25, 48, 72, 34, 12 , 34 ]
+          }]
+        },
+
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          }
+        }
+      });
+
+      // Doughnut chart
+      var ctx = document.getElementById("canvasDoughnut");
+      var data = {
+        labels: ["Salles", "Equipements", "Intervenants", "Goodies", "Réstauration" , "Personnel" , "Publicité" , "Ressources" ],
+        datasets: [{
+          data: [<?php echo $coutsalle; ?>, <?php echo $coutequiper; ?>, <?php echo $ren_intervenant+$couttrens+$coutheb; ?>, <?php echo $coutGoo; ?>, <?php echo $coutrepas; ?>,<?php echo $ren_personnel; ?>,<?php echo $cout_pub; ?>,<?php echo $coutR; ?>],
+          backgroundColor: [
+            "#455C73",
+            "#9B59B6",
+            "#BDC3C7",
+            "#26B99A",
+            "#3498DB",
+			"#f0ad4e",
+			"#d9534f",
+			"#5bc0de",
+          ],
+          hoverBackgroundColor: [
+            "#34495E",
+            "#B370CF",
+            "#CFD4D8",
+            "#36CAAB",
+            "#49A9EA",
+			"#d6963c",
+			"#b33531",
+			"#4fabc6",
+          ]
+
+        }]
+      };
+
+      var canvasDoughnut = new Chart(ctx, {
+        type: 'doughnut',
+        tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+        data: data
+      });
+	  
+	  // Doughnut chart
+      var ctx = document.getElementById("canvasDoughnut_2");
+      var data = {
+        labels: [
+         "Salles", "Personnel", "Equipements", "Intervenants", "Publicité", "Goodies", "Réstauration", "Autres"
+        ],
+        datasets: [{
+          data: [110, 50, 130, 190, 111 , 200 , 122, 131],
+          backgroundColor: [
+            "#455C73",
+            "#9B59B6",
+            "#BDC3C7",
+            "#26B99A",
+            "#3498DB",
+			"#f0ad4e",
+			"#d9534f",
+			"#5bc0de",
+          ],
+          hoverBackgroundColor: [
+            "#34495E",
+            "#B370CF",
+            "#CFD4D8",
+            "#36CAAB",
+            "#49A9EA",
+			"#d6963c",
+			"#b33531",
+			"#4fabc6",
+          ]
+
+        }]
+      };
+
+      var canvasDoughnut = new Chart(ctx, {
+        type: 'doughnut',
+        tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+        data: data
+      });
+
+
+    </script>
+    <!-- /Chart.js -->
+  </body>
+</html>
